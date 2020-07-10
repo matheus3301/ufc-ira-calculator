@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <title>Calculadora de IRA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="assets/img/logo-round.png" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #325d88;">
+        <a class="navbar-brand" href="#">
+            <img src="assets/img/logo-round.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+            
+          </a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Início <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="app.html">Calcular</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contato</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">Sobre</a>
+                </li>
+               
+            </ul>
+            
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <h1>Calculadora de IRA</h1>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <h3>Adicionar Cadeira</h3>
+                <form id="formCadeira" name="formCadeira" onsubmit="addGrade(event)">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                          <label for="">Semestre:</label>
+                          <input type="number" required
+                            class="form-control" name="semestre" id="semestre" placeholder="0" min="0">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                          <label for="">Créditos:</label>
+                          <input type="number" required
+                            class="form-control" name="credito" id="credito" placeholder="0" min="0">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                          <label for="">Nota:</label>
+                          <input type="number" required
+                            class="form-control" name="nota" id="nota"  step="0.01"  placeholder="0.00" min="0">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group ml-3">
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="opcao" id="tranca" value="tranca"> Trancamento
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="opcao" id="falta" value="falta"> Reprovação Por Falta
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+                <button type="submit" class="btn btn-success" style="float:right">Adicionar</button>
+                </form>
+            </div>
+            <div class="col-md-8">
+                <h3>Cadeiras</h3>
+                <table class="table table-hover text-center ">
+                    <thead class="thead-default">
+                        <tr>
+                            <th>Semestre</th>
+                            <th>Carga Horária</th>
+                            <th>Nota</th>
+                        </tr>
+                        </thead>
+                        <tbody id="table-content">
+                            <tr>
+                                <td scope="row">1</td>
+                                <td>4</td>
+                                <td>9.0</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">1</td>
+                                <td>2</td>
+                                <td>10</td>
+                            </tr>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js" ></script>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
