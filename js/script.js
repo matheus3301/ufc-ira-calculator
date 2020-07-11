@@ -103,9 +103,10 @@ var calculateIndividual = function(){
 }
 
 var calculateGeneral = function(individual){
-    let avg = $("#iraCurso").val();
-    let dp = $("#desvioPadrao").val();
+    let avg = parseFloat( $("#iraCurso").val()) || 0;
+    let dp = parseFloat( $("#desvioPadrao").val()) || 0;
 
+    if(avg == 0 || dp == 0) return 0;
     
     let ans = 6 + 2*((individual - avg)/dp);
     return ans;
@@ -113,12 +114,21 @@ var calculateGeneral = function(individual){
 }
 
 var renderResult = function(){
-    let individual = calculateIndividual();
-    let general = calculateGeneral(individual);
 
 
-    $("#indivualResult").html(individual.toPrecision(3));
-    $("#generalResult").html(general.toPrecision(3));
+    if(grades.length > 0){
+        $("#modalResult").modal('show');
+
+        let individual = calculateIndividual();
+        let general = calculateGeneral(individual);
+
+        $("#indivualResult").html(individual.toPrecision(3));
+        $("#generalResult").html(general.toPrecision(3));
+    }else{
+        $("#message").html('<div class="alert alert-warning alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Atenção,</strong> Para fazer o cálculo é necessário inserir alguma nota</div>');
+    }
+
+    
 
 }
 
