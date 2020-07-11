@@ -51,6 +51,8 @@ var addGrade = function(e){
     grades.push(obj);
 
     document.getElementById("formCadeira").reset();
+    $("#nota").removeAttr("disabled");
+
 
     renderTable();
     console.log(grades);
