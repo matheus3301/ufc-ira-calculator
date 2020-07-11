@@ -50,72 +50,82 @@
         </div>
         <div class="row mt-5">
             <div class="col-md-4">
-                <h3>Adicionar Cadeira</h3>
-                <form id="formCadeira" name="formCadeira" onsubmit="addGrade(event)">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                          <label for="">Semestre:</label>
-                          <input type="number" required
-                            class="form-control" name="semestre" id="semestre" placeholder="0" min="0">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                          <label for="">Créditos:</label>
-                          <input type="number" required
-                            class="form-control" name="credito" id="credito" placeholder="0" min="0">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                          <label for="">Nota:</label>
-                          <input type="number" required
-                            class="form-control" name="nota" id="nota"  step="0.01"  placeholder="0.00" min="0" max="10">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group ml-3">
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="opcao" id="tranca" value="tranca"> Trancamento
-                            </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="opcao" id="falta" value="falta"> Reprovação Por Falta
-                            </label>
-                        </div>
-                        <small id="helpId" class="form-text text-muted">Em caso de reprovação por falta, a nota automaticamente é 0(zero)</small>
 
+                <div class="card" style="border-radius: 15px;">
+                    <h5 class="card-header blue text-white" style="border-top-right-radius: 15px;border-top-left-radius: 15px;">Adicionar Cadeira</h5>
+                    <div class="card-body">
+                        <form id="formCadeira" name="formCadeira" onsubmit="addGrade(event)">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label for="">Semestre:</label>
+                                      <input type="number" required
+                                        class="form-control" name="semestre" id="semestre" placeholder="0" min="0">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label for="">Créditos:</label>
+                                      <input type="number" required
+                                        class="form-control" name="credito" id="credito" placeholder="0" min="0">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <label for="">Nota:</label>
+                                      <input type="number" required
+                                        class="form-control" name="nota" id="nota"  step="0.01"  placeholder="0.00" min="0" max="10">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group ml-3">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" name="opcao" id="tranca" value="tranca"> Trancamento
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" name="opcao" id="falta" value="falta"> Reprovação Por Falta
+                                        </label>
+                                    </div>
+                                    <small id="helpId" class="form-text text-muted">Em caso de reprovação por falta, a nota automaticamente é 0(zero)</small>
+            
+                                </div>
+                                
+                            </div>
+                            <button type="submit" class="btn btn-success" style="float:right">Adicionar</button>
+                            </form>
                     </div>
-                    
-                </div>
-                <button type="submit" class="btn btn-success" style="float:right">Adicionar</button>
-                </form>
+                  </div>
 
                 
-                <h3 class="mt-5">Opções Gerais</h3>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="iraCurso">IRA médio do Curso</label>
-                            <input type="number"
-                            class="form-control" name="iraCurso" id="iraCurso" step="0.01" min="0" max="10" placeholder="0.0">
+                  <div class="card mt-3" style="border-radius: 15px;">
+                    <h5 class="card-header blue text-white" style="border-top-right-radius: 15px;border-top-left-radius: 15px;">Opções Gerais</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="iraCurso">IRA médio do Curso</label>
+                                    <input type="number"
+                                    class="form-control" name="iraCurso" id="iraCurso" step="0.01" min="0" max="10" placeholder="0.0">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="desvioPadrao">Desvio padrão:</label>
+                                    <input type="number"
+                                    class="form-control" name="desvioPadrao" id="desvioPadrao" step="0.01" placeholder="0.0">
+                                </div>
+                            </div>
+                            
                         </div>
+                        <small class="form-text text-muted">Essas informações são necessárias caso queira calcular o IRA Geral</small>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="desvioPadrao">Desvio padrão:</label>
-                            <input type="number"
-                            class="form-control" name="desvioPadrao" id="desvioPadrao" step="0.01" placeholder="0.0">
-                        </div>
-                    </div>
-                    
-                </div>
-                <small class="form-text text-muted">Essas informações são necessárias caso queira calcular o IRA Geral</small>
-
+                  </div>
+                              
+               
             </div>
             <div class="col-md-8">
                 <h3>Cadeiras</h3>
