@@ -1,0 +1,41 @@
+.welcome{
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+    align-items: center;
+    
+    background-image: url("../assets/img/studying_resized.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+
+    padding: 0 5vw 0;
+}
+
+.welcome-title{
+    font-family: 'Roboto Slab', serif;
+    font-size: 4em;
+    color: #ebebeb
+}
+
+
+.welcome-span{
+    font-family: 'Roboto Slab', serif;
+    font-weight: 300;
+    color: rgb(206, 206, 206);
+    text-align: center;
+}
+
+#ctaButton{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 10%;
+    width: 40%;
+    font-size: 1.5em;
+    align-items: center;
+    
+}
