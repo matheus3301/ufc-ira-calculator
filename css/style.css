@@ -39,3 +39,18 @@
     align-items: center;
     
 }
+
+.blue{
+    background-color: #325d88;
+}
+
+.dev-img{
+    border-radius: 60%;
+    width: 60%;
+
+    object-fit: cover;
+}
+
+i{
+    color: #325d88;
+}
