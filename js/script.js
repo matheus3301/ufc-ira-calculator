@@ -102,10 +102,24 @@ var calculateIndividual = function(){
     return ans;
 }
 
-var renderIndividual = function(){
-    let ira = calculateIndividual();
+var calculateGeneral = function(individual){
+    let avg = $("#iraCurso").val();
+    let dp = $("#desvioPadrao").val();
 
-    $("#indivualResult").html(ira.toPrecision(3));
+    
+    let ans = 6 + 2*((individual - avg)/dp);
+    return ans;
+
+}
+
+var renderResult = function(){
+    let individual = calculateIndividual();
+    let general = calculateGeneral(individual);
+
+
+    $("#indivualResult").html(individual.toPrecision(3));
+    $("#generalResult").html(general.toPrecision(3));
+
 }
 
 checkbox("opcao");

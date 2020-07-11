@@ -43,7 +43,7 @@
                 <h1>Calculadora de IRA</h1>
             </div>
             <div class="col-sm-6">
-                <button id="buttonCalc" onClick="renderIndividual()" type="button" class="btn btn-success" data-toggle="modal" data-target="#modalResult" style="float:right">
+                <button id="buttonCalc" onClick="renderResult()" type="button" class="btn btn-success" data-toggle="modal" data-target="#modalResult" style="float:right">
                     Calcular!
                 </button>
             </div>
@@ -154,13 +154,24 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">O seu IRA é individual é aproximadamente:</h5>
+                    <h5 class="modal-title">Resultado</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                 </div>
                 <div class="modal-body text-center">
-                    <span id="indivualResult" style="font-weight: bold; font-size: 70px;">0.00</span>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <span style="font-size: 1.2em;">IRA Individual:</span><br>
+                            <span id="indivualResult" style="font-weight: bold; font-size: 70px;">0.00</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <span style="font-size: 1.2em;">IRA Geral:</span><br>
+                            <span id="generalResult" style="font-weight: bold; font-size: 70px;">0.00</span>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
