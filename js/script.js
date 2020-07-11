@@ -97,7 +97,13 @@ var calculateIndividual = function(){
     });
 
     let ans = (1 - (0.5*t)/c) * sigA/sigB;
-    console.log(ans);
+    return ans;
+}
+
+var renderIndividual = function(){
+    let ira = calculateIndividual();
+
+    $("#indivualResult").html(ira.toPrecision(3));
 }
 
 checkbox("opcao");
