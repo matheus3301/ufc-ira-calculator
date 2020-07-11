@@ -33,11 +33,13 @@ var addGrade = function(e){
     let grade = $("#nota").val();
     let semester = $("#semestre").val();
     let credits = $("#credito").val();
+    let locked = document.getElementById("tranca").checked;
 
     let obj = {
         semester,
         credits,
-        grade
+        grade,
+        locked
     }
 
     grades.push(obj);
@@ -45,7 +47,7 @@ var addGrade = function(e){
     document.getElementById("formCadeira").reset();
 
     renderTable();
-
+    console.log(grades);
 }
 
 var renderTable = function(){
@@ -57,9 +59,14 @@ var renderTable = function(){
         tableContent.html("");
 
         grades.forEach(function(val){
-            tableContent.append(`<tr><td>${val.semester}º</td><td>${val.credits * 16}hrs</td><td>${val.grade}</td></tr>`);
+            tableContent.append(`<tr><td>${val.semester}º</td><td>${val.credits * 16}hrs</td><td>${ val.locked ? "TRANCADA" : val.grade}</td></tr>`);
         });
     }
+}
+
+var calculateIndividual = function(){
+    let t = 0;
+
 }
 
 checkbox("opcao");
