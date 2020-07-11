@@ -37,7 +37,16 @@
         </div>
     </nav>
     <div class="container mt-4">
-        <h1>Calculadora de IRA</h1>
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>Calculadora de IRA</h1>
+            </div>
+            <div class="col-sm-6">
+                <button id="buttonCalc" onClick="renderIndividual()" type="button" class="btn btn-success" data-toggle="modal" data-target="#modalResult" style="float:right">
+                    Calcular!
+                </button>
+            </div>
+        </div>
         <div class="row mt-5">
             <div class="col-md-4">
                 <h3>Adicionar Cadeira</h3>
@@ -61,7 +70,7 @@
                         <div class="form-group">
                           <label for="">Nota:</label>
                           <input type="number" required
-                            class="form-control" name="nota" id="nota"  step="0.01"  placeholder="0.00" min="0">
+                            class="form-control" name="nota" id="nota"  step="0.01"  placeholder="0.00" min="0" max="10">
                         </div>
                     </div>
                 </div>
@@ -77,11 +86,35 @@
                                 <input class="form-check-input" type="checkbox" name="opcao" id="falta" value="falta"> Reprovação Por Falta
                             </label>
                         </div>
+                        <small id="helpId" class="form-text text-muted">Em caso de reprovação por falta, a nota automaticamente é 0(zero)</small>
+
                     </div>
                     
                 </div>
                 <button type="submit" class="btn btn-success" style="float:right">Adicionar</button>
                 </form>
+
+                
+                <h3 class="mt-5">Opções Gerais</h3>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="iraCurso">IRA médio do Curso</label>
+                            <input type="number"
+                            class="form-control" name="iraCurso" id="iraCurso" step="0.01" min="0" max="10" placeholder="0.0">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="desvioPadrao">Desvio padrão:</label>
+                            <input type="number"
+                            class="form-control" name="desvioPadrao" id="desvioPadrao" step="0.01" placeholder="0.0">
+                        </div>
+                    </div>
+                    
+                </div>
+                <small class="form-text text-muted">Essas informações são necessárias caso queira calcular o IRA Geral</small>
+
             </div>
             <div class="col-md-8">
                 <h3>Cadeiras</h3>
@@ -94,21 +127,35 @@
                         </tr>
                         </thead>
                         <tbody id="table-content">
-                            <tr>
-                                <td scope="row">1</td>
-                                <td>4</td>
-                                <td>9.0</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">1</td>
-                                <td>2</td>
-                                <td>10</td>
-                            </tr>
+                            
                         </tbody>
                 </table>
+               
             </div>
         </div>
 
+    </div>
+
+   
+    
+    <!-- Modal -->
+    <div class="modal fade" id="modalResult" tabindex="-1" role="dialog" aria-labelledby="resultadoIra" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">O seu IRA é individual é aproximadamente:</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body text-center">
+                    <span id="indivualResult" style="font-weight: bold; font-size: 70px;">0.00</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
