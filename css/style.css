@@ -1,3 +1,5 @@
+
+
 .welcome{
     display: flex;
     flex-direction: column;
@@ -8,14 +10,16 @@
     background-image: url("../assets/img/studying_resized.png");
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
+    min-height: 100vh;
 
-    padding: 0 5vw 0;
+    padding: 0 5vw 5vw;
+
+    
 }
 
 .welcome-title{
     font-family: 'Roboto Slab', serif;
-    font-size: 4em;
+    font-size: 2em;
     color: #ebebeb
 }
 
@@ -33,7 +37,7 @@
     flex-direction: column;
     justify-content: center;
 
-    height: 10%;
+    height: 50px;
     width: 40%;
     font-size: 1.5em;
     
@@ -54,3 +58,19 @@
 i{
     color: #325d88;
 }
+
+@media (min-width: 576px) { }
+
+@media (min-width: 768px) {  
+    .welcome-title{
+        font-size: 3em;
+    }
+}
+
+@media (min-width: 992px) { 
+    .welcome-title{
+        font-size: 4em;
+    }
+ }
+
+@media (min-width: 1200px) { }
