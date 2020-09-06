@@ -53,7 +53,8 @@
             <div class="col-md-4">
 
                 <div class="card" style="border-radius: 15px;">
-                    <h5 class="card-header blue text-white" style="border-top-right-radius: 15px;border-top-left-radius: 15px;">Adicionar Cadeira</h5>
+                    
+                    <h5 class="card-header blue text-white" style="border-top-right-radius: 15px;border-top-left-radius: 15px;">Adicionar Cadeira  <span class="import-text" style="color:#ebebeb;">Importar notas...</span> </h5>
                     <div class="card-body">
                         <form id="formCadeira" name="formCadeira" onsubmit="addGrade(event)">
                             <div class="row">
@@ -100,7 +101,6 @@
                             </form>
                     </div>
                   </div>
-
                 
                   <div class="card mt-3" style="border-radius: 15px;">
                     <h5 class="card-header blue text-white" style="border-top-right-radius: 15px;border-top-left-radius: 15px;">Opções Gerais</h5>
@@ -125,6 +125,7 @@
                         <small class="form-text text-muted">Essas informações são necessárias caso queira calcular o IRA Geral</small>
                     </div>
                   </div>
+
             </div>
             <div class="col-md-8">
                 <div class="row mb-4">
@@ -149,13 +150,14 @@
                             
                         </tbody>
                 </table>
+
+                <span class="import-text" style="color:#777777;">Exportar para arquivo...</span>
                
             </div>
         </div>
 
     </div>
 
-   
     
     <!-- Modal -->
     <div class="modal fade" id="modalResult" tabindex="-1" role="dialog" aria-labelledby="resultadoIra" aria-hidden="true">
