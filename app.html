@@ -39,14 +39,10 @@
     </nav>
     <div class="container mt-4" style="height: auto; min-height: 100vh;">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <h1>Calculadora de IRA</h1>
             </div>
-            <div class="col-sm-6">
-                <button id="buttonCalc" onClick="renderResult()" type="button" class="btn btn-success" style="float:right">
-                    Calcular!
-                </button>
-            </div>
+            
         </div>
 
         <div id="message">
@@ -129,11 +125,18 @@
                         <small class="form-text text-muted">Essas informações são necessárias caso queira calcular o IRA Geral</small>
                     </div>
                   </div>
-                              
-               
             </div>
             <div class="col-md-8">
-                <h3>Cadeiras</h3>
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <h3>Cadeiras</h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <button id="buttonCalc" onClick="renderResult()" type="button" class="btn btn-success" style="float:right">
+                            Calcular!
+                        </button>
+                    </div>
+                </div>
                 <table class="table table-hover text-center ">
                     <thead class="thead-default">
                         <tr>
