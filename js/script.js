@@ -1,21 +1,25 @@
 var grades = [];
 
 var getValidInput = function (content) {
-  let convertedJson = JSON.parse(content);
+  try {
+    let convertedJson = JSON.parse(content);
 
-  if (!convertedJson) return 0;
+    if (!convertedJson) return 0;
 
-  convertedJson.forEach((grade) => {
-    if (
-      !grade.hasOwnProperty('semester') ||
-      !grade.hasOwnProperty('credits') ||
-      !grade.hasOwnProperty('grade') ||
-      !grade.hasOwnProperty('locked')
-    )
-      return 0;
-  });
+    convertedJson.forEach((grade) => {
+      if (
+        !grade.hasOwnProperty('semester') ||
+        !grade.hasOwnProperty('credits') ||
+        !grade.hasOwnProperty('grade') ||
+        !grade.hasOwnProperty('locked')
+      )
+        return 0;
+    });
 
-  return convertedJson;
+    return convertedJson;
+  } catch (e) {
+    return 0;
+  }
 };
 
 var handleSelectFile = function () {
