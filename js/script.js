@@ -1,5 +1,23 @@
 var grades = [];
 
+var getValidInput = function (content) {
+  let convertedJson = JSON.parse(content);
+
+  if (!convertedJson) return 0;
+
+  convertedJson.forEach((grade) => {
+    if (
+      !grade.hasOwnProperty('semester') ||
+      !grade.hasOwnProperty('credits') ||
+      !grade.hasOwnProperty('grade') ||
+      !grade.hasOwnProperty('locked')
+    )
+      return 0;
+  });
+
+  return convertedJson;
+};
+
 var handleSelectFile = function () {
   console.log('selecting file...');
 
@@ -15,6 +33,17 @@ var handleSelectFile = function () {
     reader.onload = (readerEvent) => {
       let content = readerEvent.target.result;
       console.log(content);
+
+      let result = getValidInput(content);
+
+      if (result) {
+        grades = result;
+        renderTable();
+      } else {
+        $('#message').html(
+          '<div class="alert alert-warning alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Atenção,</strong> Arquivo inserido não é válido!</div>'
+        );
+      }
     };
   };
 
