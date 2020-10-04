@@ -6,17 +6,29 @@ var getValidInput = function (content) {
 
     if (!convertedJson) return 0;
 
+    let valid = true;
     convertedJson.forEach((grade) => {
       if (
         !grade.hasOwnProperty('semester') ||
         !grade.hasOwnProperty('credits') ||
         !grade.hasOwnProperty('grade') ||
-        !grade.hasOwnProperty('locked')
-      )
+        !grade.hasOwnProperty('locked') ||
+        !Number.isInteger(grade.semester) ||
+        !Number.isInteger(grade.credits) ||
+        Number.isNaN(grade.grade) ||
+        typeof grade.locked != 'boolean'
+      ) {
+        valid = false;
         return 0;
+      } else {
+        console.log(grade);
+      }
     });
 
-    return convertedJson;
+    if (valid) {
+      return convertedJson;
+    }
+    return 0;
   } catch (e) {
     return 0;
   }
