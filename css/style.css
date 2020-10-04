@@ -1,4 +1,13 @@
+.import-text{
+    font-size: 0.8rem;
+    float:right;
+    margin-top: 2px;
+}
 
+.import-text:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
 
 .welcome{
     display: flex;
@@ -58,6 +67,7 @@
 i{
     color: #325d88;
 }
+
 
 @media (min-width: 576px) { }
 
