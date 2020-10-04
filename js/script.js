@@ -1,136 +1,159 @@
 var grades = [];
 
-var checkbox = function(){
+var handleSelectFile = function () {
+  console.log('selecting file...');
 
-    $("input[type='checkbox']").click(function() {
-        console.log("Clique")
+  let input = document.createElement('input');
+  input.type = 'file';
 
-        let value = $(this).attr('value');
-        let point = $("#nota");
+  input.onchange = (e) => {
+    let file = e.target.files[0];
 
-        if(document.getElementById(value).checked){
-            console.log("checking");
-            point.attr("disabled",true);
+    let reader = new FileReader();
+    reader.readAsText(file, 'UTF-8');
 
-            if(value == "tranca"){
-                document.getElementById("falta").checked = false;
-            }else{
-                document.getElementById("tranca").checked = false;
-            }
-        }else{
-            console.log("unchecking");
-            point.removeAttr("disabled");
+    reader.onload = (readerEvent) => {
+      let content = readerEvent.target.result;
+      console.log(content);
+    };
+  };
 
-        }
-        
-        
-    });
+  input.click();
 };
 
-var addGrade = function(e){
-    e.preventDefault();
+var handleSaveFile = function () {
+  console.log('saving grades on file...');
 
-    let grade = parseFloat($("#nota").val());
-    let semester = parseInt($("#semestre").val());
-    let credits = parseInt($("#credito").val());
-    
-    let locked = document.getElementById("tranca").checked;
-    let miss =  document.getElementById("falta").checked;
+  let gradesString = JSON.stringify(grades, null, 4);
 
-    if(miss){
-        grade = 0;
+  let blob = new Blob([gradesString], {
+    type: 'application/json;charset=utf-8',
+  });
+  saveAs(blob, 'Notas - IRA Calculator - ' + new Date() + '.json');
+};
+
+var checkbox = function () {
+  $("input[type='checkbox']").click(function () {
+    console.log('Clique');
+
+    let value = $(this).attr('value');
+    let point = $('#nota');
+
+    if (document.getElementById(value).checked) {
+      console.log('checking');
+      point.attr('disabled', true);
+
+      if (value == 'tranca') {
+        document.getElementById('falta').checked = false;
+      } else {
+        document.getElementById('tranca').checked = false;
+      }
+    } else {
+      console.log('unchecking');
+      point.removeAttr('disabled');
     }
+  });
+};
 
-    let obj = {
-        semester,
-        credits,
-        grade,
-        locked
-    }
+var addGrade = function (e) {
+  e.preventDefault();
 
-    grades.push(obj);
+  let grade = parseFloat($('#nota').val());
+  let semester = parseInt($('#semestre').val());
+  let credits = parseInt($('#credito').val());
 
-    document.getElementById("formCadeira").reset();
-    $("#nota").removeAttr("disabled");
+  let locked = document.getElementById('tranca').checked;
+  let miss = document.getElementById('falta').checked;
 
+  if (miss) {
+    grade = 0;
+  }
 
-    renderTable();
-    console.log(grades);
-}
+  let obj = {
+    semester,
+    credits,
+    grade,
+    locked,
+  };
 
-var renderTable = function(){
-    let tableContent = $("#table-content");
+  grades.push(obj);
 
-    if(!grades.length){
-        tableContent.html("<tr><td colspan='3'><center><strong>Não há notas ...</strong></center></td></tr>");
-    }else{
-        tableContent.html("");
+  document.getElementById('formCadeira').reset();
+  $('#nota').removeAttr('disabled');
 
-        grades.forEach(function(val){
-            tableContent.append(`<tr><td>${val.semester}º</td><td>${val.credits * 16}hrs</td><td>${ val.locked ? "<strong>TRANCADA</strong>" : val.grade}</td></tr>`);
-        });
-    }
-}
+  renderTable();
+  console.log(grades);
+};
 
-var calculateIndividual = function(){
+var renderTable = function () {
+  let tableContent = $('#table-content');
 
-    console.log("testing");
+  if (!grades.length) {
+    tableContent.html(
+      "<tr><td colspan='3'><center><strong>Não há notas ...</strong></center></td></tr>"
+    );
+  } else {
+    tableContent.html('');
 
-    let t = 0;
-    let c = 0;
-
-    let sigA = 0;
-    let sigB = 0;
-
-
-    grades.forEach(function(val){
-        if(val.locked){
-            t += val.credits * 16;
-        }else{
-            sigA += (Math.min(6,val.semester) * (val.credits * 16) * val.grade);
-            sigB += (Math.min(6,val.semester) * (val.credits * 16));
-
-        }
-
-        c += val.credits * 16;
-
-
-
+    grades.forEach(function (val) {
+      tableContent.append(
+        `<tr><td>${val.semester}º</td><td>${val.credits * 16}hrs</td><td>${
+          val.locked ? '<strong>TRANCADA</strong>' : val.grade
+        }</td></tr>`
+      );
     });
+  }
+};
 
-    let ans = (1 - (0.5*t)/c) * sigA/sigB;
-    return ans;
-}
+var calculateIndividual = function () {
+  console.log('testing');
 
-var calculateGeneral = function(individual){
-    let avg = parseFloat( $("#iraCurso").val()) || 0;
-    let dp = parseFloat( $("#desvioPadrao").val()) || 0;
+  let t = 0;
+  let c = 0;
 
-    if(avg == 0 || dp == 0) return 0;
-    
-    let ans = 6 + 2*((individual - avg)/dp);
-    return ans;
+  let sigA = 0;
+  let sigB = 0;
 
-}
-
-var renderResult = function(){
-
-
-    if(grades.length > 0){
-        $("#modalResult").modal('show');
-
-        let individual = calculateIndividual();
-        let general = calculateGeneral(individual);
-
-        $("#indivualResult").html(individual.toPrecision(3));
-        $("#generalResult").html(general.toPrecision(3));
-    }else{
-        $("#message").html('<div class="alert alert-warning alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Atenção,</strong> Para fazer o cálculo é necessário inserir alguma nota</div>');
+  grades.forEach(function (val) {
+    if (val.locked) {
+      t += val.credits * 16;
+    } else {
+      sigA += Math.min(6, val.semester) * (val.credits * 16) * val.grade;
+      sigB += Math.min(6, val.semester) * (val.credits * 16);
     }
 
-    
+    c += val.credits * 16;
+  });
 
-}
+  let ans = ((1 - (0.5 * t) / c) * sigA) / sigB;
+  return ans;
+};
 
-checkbox("opcao");
+var calculateGeneral = function (individual) {
+  let avg = parseFloat($('#iraCurso').val()) || 0;
+  let dp = parseFloat($('#desvioPadrao').val()) || 0;
+
+  if (avg == 0 || dp == 0) return 0;
+
+  let ans = 6 + 2 * ((individual - avg) / dp);
+  return ans;
+};
+
+var renderResult = function () {
+  if (grades.length > 0) {
+    $('#modalResult').modal('show');
+
+    let individual = calculateIndividual();
+    let general = calculateGeneral(individual);
+
+    $('#indivualResult').html(individual.toPrecision(3));
+    $('#generalResult').html(general.toPrecision(3));
+  } else {
+    $('#message').html(
+      '<div class="alert alert-warning alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Atenção,</strong> Para fazer o cálculo é necessário inserir alguma nota</div>'
+    );
+  }
+};
+
+checkbox('opcao');
 renderTable();
