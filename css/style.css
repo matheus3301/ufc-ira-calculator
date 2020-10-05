@@ -74,3 +74,27 @@ i{
  }
 
 @media (min-width: 1200px) { }
+
+.featurette-divider { margin: 80px 0; }
+
+.featurette { overflow: hidden; }
+
+.featurette-image.pull-left { margin-right: 40px; }
+
+.featurette-image.pull-right { margin-left: 40px; }
+
+.featurette-heading { font-size: 50px; }
+
+#image
+{
+    height: 380px;
+}
+
+#motivation
+{
+    font-size: 17px;
+}
+#open
+{
+    height: 380px;
+}
