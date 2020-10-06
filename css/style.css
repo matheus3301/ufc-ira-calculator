@@ -98,3 +98,9 @@ i{
 {
     height: 380px;
 }
+
+a:link 
+{ 
+ text-decoration:none; 
+ color: #F8F8FF;
+} 
