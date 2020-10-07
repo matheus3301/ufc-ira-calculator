@@ -99,8 +99,21 @@ i{
     height: 380px;
 }
 
-a:link 
-{ 
- text-decoration:none; 
- color: #F8F8FF;
-} 
+a:link {
+    color: #ffffff;
+ }
+ 
+ /* link que foi visitado */
+ a:visited {
+     color: #ffffff;
+ }
+ 
+ /* mouse over */
+ a:hover {
+     color: #ffffff;
+ }
+ 
+ /* link selecionado */
+ a:active {
+     color: #ffffff;
+ }
