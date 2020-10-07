@@ -135,16 +135,23 @@ var renderTable = function () {
 
   if (!grades.length) {
     tableContent.html(
-      "<tr><td colspan='3'><center><strong>Não há notas ...</strong></center></td></tr>"
+      "<tr><td colspan='4'><center><strong>Não há notas ...</strong></center></td></tr>"
     );
   } else {
     tableContent.html('');
 
-    grades.forEach(function (val) {
+    grades.forEach(function (val, key) {
       tableContent.append(
-        `<tr><td>${val.semester}º</td><td>${val.credits * 16}hrs</td><td>${
-          val.locked ? '<strong>TRANCADA</strong>' : val.grade
-        }</td></tr>`
+        `<tr>
+              <td>${val.semester}º</td>
+              <td>${val.credits * 16}hrs</td>
+              <td>${val.locked ? '<strong>TRANCADA</strong>' : val.grade}</td>
+              <td> 
+                  <button onclick="handleRemoveGrade(${key})" class="btn btn-danger" style="padding:0 .5rem">
+                      <i class="fas fa-trash text-white"></i>
+                  </button> 
+              </td>
+          </tr>`
       );
     });
   }
@@ -198,6 +205,24 @@ var renderResult = function () {
       '<div class="alert alert-warning alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Atenção,</strong> Para fazer o cálculo é necessário inserir alguma nota</div>'
     );
   }
+};
+
+var removeGrade = function (position) {
+  let newGrades = [];
+
+  grades.forEach(function (value, index) {
+    if (position != index) {
+      newGrades.push(value);
+    }
+  });
+
+  grades = newGrades;
+};
+
+var handleRemoveGrade = function (index) {
+  removeGrade(index);
+
+  renderTable();
 };
 
 checkbox('opcao');
