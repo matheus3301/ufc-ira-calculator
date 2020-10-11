@@ -13,6 +13,17 @@
   padding: 0 5vw 5vw;
 }
 
+.import-text {
+  font-size: 0.8rem;
+  float: right;
+  margin-top: 2px;
+}
+
+.import-text:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .welcome-title {
   font-family: 'Roboto Slab', serif;
   font-size: 2em;
@@ -80,6 +91,9 @@ i {
 
 .featurette-image.pull-left {
   margin-right: 40px;
+}
+
+@media (min-width: 576px) {
 }
 
 .featurette-image.pull-right {
