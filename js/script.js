@@ -10,11 +10,11 @@ var getValidInput = function (content) {
     convertedJson.forEach((grade) => {
       if (
         !grade.hasOwnProperty('semester') ||
-        !grade.hasOwnProperty('credits') ||
+        !grade.hasOwnProperty('hours') ||
         !grade.hasOwnProperty('grade') ||
         !grade.hasOwnProperty('locked') ||
         !Number.isInteger(grade.semester) ||
-        !Number.isInteger(grade.credits) ||
+        !Number.isInteger(grade.hours) ||
         Number.isNaN(grade.grade) ||
         typeof grade.locked != 'boolean'
       ) {
@@ -57,7 +57,7 @@ var handleSelectFile = function () {
         renderTable();
       } else {
         $('#message').html(
-          '<div class="alert alert-warning alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Atenção,</strong> Arquivo inserido não é válido!</div>'
+          '<div class="alert alert-warning alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Atenção!</strong> Arquivo inserido não é válido.</div>'
         );
       }
     };
@@ -105,7 +105,7 @@ var addGrade = function (e) {
 
   let grade = parseFloat($('#nota').val());
   let semester = parseInt($('#semestre').val());
-  let credits = parseInt($('#credito').val());
+  let hours = parseInt($('#horas').val());
 
   let locked = document.getElementById('tranca').checked;
   let miss = document.getElementById('falta').checked;
@@ -116,7 +116,7 @@ var addGrade = function (e) {
 
   let obj = {
     semester,
-    credits,
+    hours,
     grade,
     locked,
   };
@@ -144,7 +144,7 @@ var renderTable = function () {
       tableContent.append(
         `<tr>
               <td>${val.semester}º</td>
-              <td>${val.credits * 16}hrs</td>
+              <td>${val.hours}hrs</td>
               <td>${val.locked ? '<strong>TRANCADA</strong>' : val.grade}</td>
               <td> 
                   <button onclick="handleRemoveGrade(${key})" class="btn btn-danger" style="padding:0 .5rem">
@@ -168,13 +168,13 @@ var calculateIndividual = function () {
 
   grades.forEach(function (val) {
     if (val.locked) {
-      t += val.credits * 16;
+      t += val.hours;
     } else {
-      sigA += Math.min(6, val.semester) * (val.credits * 16) * val.grade;
-      sigB += Math.min(6, val.semester) * (val.credits * 16);
+      sigA += Math.min(6, val.semester) * val.hours * val.grade;
+      sigB += Math.min(6, val.semester) * val.hours;
     }
 
-    c += val.credits * 16;
+    c += val.hours;
   });
 
   let ans = ((1 - (0.5 * t) / c) * sigA) / sigB;
